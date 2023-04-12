@@ -83,7 +83,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 ### 1.4.1 InceptionNet V1-2014
 **简介**：在和VGG提出的同年，谷歌团队提出了GoogLeNet一起参加了当年的ImageNet比赛，以其卓越的表现在当年的ImageNet中分类任务中取得第一名![[GoogLeNet_v1.png]]
-  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GooLeNet_v1.png)
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_v1.png)
   
 
 **主要贡献**：
@@ -92,7 +92,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 * **引入辅助输出层**，在模型训练时的几个Stage分别构建输出层，将这些输出层(2个辅助输出层和一个主输出层)一起作用于模型的损失计算和优化
 ![[GoogLeNet_shortcut.png|400]]
-*   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_shortcut.png)
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_shortcut.png)
 * 使用**1x1卷积**进行数据降维(展平)，其效果等同于全连接层，**从信息学的角度上来说信息损失极小**，却极大地减小了的计算量和计算复杂度
 * 丢弃全连接层，使用平均池化层，极大地减少模型的参数，其参数是VGG的1/20
 
@@ -133,6 +133,8 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 * 提出几个网络设计准则；引入卷积分解提高效率；引入高效的feature map降维
 * 相关炼丹经验成为后续深度学习研究推进的重要参考
 * 修改了Inception模块，将大的卷积拆解为小的卷积。替换5x5为多个3x3，1x7和7x1的堆叠，将3x3替换为1x3和3x1，下图中的小图展示了Inception结构的变化。![[GoogLeNet_Inception_v3.png]]
+  
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v3.png)
 
 **模型复现**：未复现
 
@@ -143,13 +145,17 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 * 在InceptionV3的基础之上改进，提出InceptionV4模块；借鉴ResNet提出Inception-ResNet，这两者在ImageNet上的表现很相似。
 * 进一步对网络结构做划分，分解为Stem层(即数据预前处理层，图1)、Stage层(即模型层)、Reduction层(即特征放缩放缩层，图2)和后处理层(包括Pooling池化、DropOut随机失活和SoftMax聚合)
 ![[GoogLeNet_Inception_v4.png|500]]
+  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/GoogLeNet_Inception_v4.png)
 ![[GoogLeNet_Inception_v4_Reduction.png|500]]
+  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/GoogLeNet_Inception_v4_Reduction.png)
 
 * V3的Inception结构中的Pooling模块也被改成了AvgPooling结构，3x3的卷积结构也被拆解为1xN和Nx1的卷积的组合，以下是InceptionNet V4的总览
 ![[GoogLeNet_v4.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_v4.png)
 
 * Inception-ResNet模块，从某种程度上来说，残差结构可以等价于Inception中的1x1卷积的分支
 ![[GoogLeNet_v4_Inception_ResNet.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v4_Reduction.png)
 **模型复现**：未复现
 
 
@@ -165,8 +171,10 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 **主要贡献**：
 * 提出Residual残差模块，连接不同层之间的输出，防止模型退化。左边的模型是ResNet[18/34]的残差模块，右边的是ResNet[50/101/152]的残差模块。
 ![[ResNet_Residual.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNet_Residual.png)
 * 超深的网络结构，突破200层，几乎是传统网络结构的究极体
 ![[ResNet.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNet.png)
 * 采用BatchNormalization加速，丢弃DropOut结构
 * 残差神经网络ResNet-34的计算量是VGG-19的18%左右，但是准确率却远高于后者
 
@@ -185,7 +193,9 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 **主要贡献**：
 * 将Inception结构概念进行抽取，形成Group Conv的概念-**Split-Transform-Merge**实际上这样的思想符合神经网络的基础定义   $\mathcal{F}=\sum_{i=1}^C \mathcal{T}_i(\mathbf{x})$
 ![[ResNeXt.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNeXt.png)
 在ResNeXt中加上残差部分，就构成了  $\mathcal{Y}=X + \sum_{i=1}^C \mathcal{T}_i(\mathbf{x})$![[ResNeXt_Residual.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNeXt_Residual.png)
 * GoogLeNet中吸取了ResNet的残差结构写出了InceptionNet V4，而ResNet吸收Inception写成了ResNeXt，两则在思路上很是相似，只不过ResNeXt中的分支拓扑结构是一样的，而InceptionNet V4是手工设计的。
 
 **模型复现**：
@@ -206,6 +216,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 **主要贡献**：
 * 提出深度可分离卷积(**Deepwise separable Conv**，DW卷积+PW卷积)，中心思想其实还是来源于Inception结构的**Split-Transform-Merge**架构。标准卷积其卷积核是用在所有的输入通道上（input channels），而depthwise convolution针对每个输入通道采用不同的卷积核，就是说一个卷积核对应一个输入通道(和前面画的图相类似)
 ![[MobileNet_v1_dw_pw.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v1_dw_pw.png)
 * 在DW卷积的定义下，提出PointwiseConv(PW卷积)，也就是卷积核大小为1x1的卷积，一般DW和PW是配合使用的
 * DW卷积的理论计算量是传统卷积的1/9，符号定义：$M$为图像channel数量，$D_F$为图像的原始尺寸，$N$为使用的卷积核个数，$D_K$为卷积核的大小。从参数角度上来看，这些参数都可以被分解为点态的参数。在$D_K=3$时，这个比值极限为$\frac{1}{9}$。
 $S_1=M*D_F^2*N*D_K^2$                             $S_2=M*D_F^2*D_K^2+M*N*D_F^2$
@@ -214,6 +225,8 @@ $$
 $$
 * 网络中的DW卷积组件为
 ![[MobileNet_v1.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v1.png)
+
 
 **模型复现**：
 * 平台：Pytorch
@@ -226,9 +239,12 @@ $$
 
 **主要贡献**： 
 * 讨论了数据流的损失效应。在使用DW卷积的情况下，被卷积压缩后的Feature Maps经过压缩，经过非线性的ReLU的激活会损失掉特征空间中的负值特征，这使得数据中的感兴趣信息损失太多。引入**ReLU6非线性激活函数**，在一定程度上保留负值空间的特征。$y = ReLU6(x)=min(max(x,0),6)$ 相比于ReLU，在$y=6$时做了一个数据截断。ReLU激活函数对于低维的信息可能会造成比较大的瞬损失，而对于高维的特征信息造成的损失很小，导致数据两头偏差较大。![[MobileNet_v2_ReLU6.png]]
+  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v2_ReLU6.png)
 * 讨论了残差结构，将原有的两头大中间小的结构改为两头小中间大的**Inverted Residual逆残差结构**，传统卷积核逆残差从模块上来说是一样的(Conv1x1+**DWConv**3x3+Conv1x1)，只是在维度方向上是不一样的，传统卷积的路线为(**Input->降维->处理->升维->Output**)，逆残差结构的路线为(**Input->升维->处理->降维->Output**)，具体可见如下示意图。
 ![[MobileNet_v2_Inverted_Residual.png|400]]
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v2_Inverted_Residual.png)
 * 逆残差结构的引入，**进一步降低了参数计算量**，其基本效果依旧保持较好的水平![[MobileNet_v2_Bottleneck.png]]
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v2_Bottleneck.png)
 **模型复现**：
 * 平台：Pytorch
 * 主用库：torchvision, torch, matplotlib, tqdm
@@ -246,6 +262,7 @@ $$
 $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 \\ x, & \text { if } x \geq 3 \\ \frac{x(x+3)}{6}, & \text { otherwise }\end{cases}$$
 * 提出通道注意力机制(Squeeze-and-excitation，SE模块)在网络计算中的利用
 ![[MobileNet_v3_SE.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v3_SE.png)
 * 重新设计原有耗时过多的层，替换了V2中NAS搜索得到的层
 
 **模型复现**：
@@ -262,13 +279,17 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 ### 1.8.1 ShuffleNet V1-2017
 **简介**：ShuffleNet是AI四小龙之一旷视科技的代表之作，算是一个里程碑式的成果，第一作者张祥雨也是ResNet的作者之一。ShuffleNet和谷歌的MobileNet一样，都是轻量级模型的代表作，也正如其名Shuffle模型融入了随机洗牌的机制，其目的在于**解决组卷积中的组内关联性低的问题**。同时，作者还讨论了模型的评价指标，常用的FLOPs是一种间接的评价指标并不能我们完全在意的内容，需要用更直接的指标来进行评价如每秒训练速度(Batches/sec)和每秒推理速度(Images/sec)。
 ![[ShuffleNet_v1.png]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1.png)
 **主要贡献**：
 * 讨论了应该如何**设计更合适的评价指标**，采用最直观的(能够感受得到的)评价指标来
 * 提出**组卷积GroupConv**的概念，和DW卷积几乎是一致的。在DW卷积中，图像的每一个Channel都有对应的卷积核来进行计算，而**GroupConv则是多个Channels作为一组**，每一组使用一个卷积核进行计算。MobileNet中的1x1卷积使得模型的计算量增大很多，于是ShuffleNet作者同样提出了对应的1x1组卷积。
 ![[ShuffleNet_v1_GroupConv.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_GroupConv.png)
 ![[ShuffleNet_v1_Shuffle.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_Shuffle.png)
 * 结合ResNeXt和MobileNet的旁支结构设计**ShuffleNet单元**
 ![[ShuffleNet_v1_ShuffleBlock.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_ShuffleBlock)
 * 以上的卷积模组不禁告诉研究者，**深度分离卷积几乎是构造轻量高效模型的必用结构**
 
 **模型复现**：
@@ -295,6 +316,7 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 **主要贡献**：
 * 在设计准则的指导下进行模型设计，改造了原来的模块。将ADD换成Concat，将Gconv1x1改回了Conv1x1，所以真的和炼丹一样，把原来改的模块全搞回去了。
 ![[ShuffleNet_v2_ShuffleBlock.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v2_ShuffleBlock.png)
 **模型复现**：
 * 平台：Pytorch
 * 主用库：torchvision, torch, matplotlib, tqdm
@@ -319,7 +341,9 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 * 探索三个基础参数对模型效率之间的关联，**找到最优的r，width，depth配比**
 * **重新设计了逆残差模块**(来源于MobileNet)，命名为**MBConv Block**，区别在于MBConv中的激活函数改为Swish(原为ReLU)，增加DropOut随机失活层。实际上并没有多大差别，纯属增加一个DropOut，如下两图展示。
 ![[EfficientNet_v1_SE_Inverted_Residual.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v1_SE_Inverted_Residual.png)
 ![[EfficientNet_v1_SE_Inverted_Residual_2.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v1_SE_Inverted_Residual_2.png)
 
 **模型复现**：
 * 平台：Pytorch
@@ -330,6 +354,7 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 ### 1.9.1 EfficientNet V2-2021
 **简介**：时隔两年，作者团队在V1产生的诸多问题上得出总结，并提出解决办法。同样，在原有的评价指标上又考虑了模型的训练速度。
 ![[EfficientNet_v2.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v2)
 
 **EfficientNet V1的问题**：
 * 在训练的图像尺寸很大时，模型的训练速度很慢
@@ -338,6 +363,7 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 **主要贡献**：
 * 修改V1的**浅层卷积模块**，将DW卷积和SE模块退回不带注意力的传统卷积，**避免浅层过度关注不重要的信息**，这样的浅层模块叫做**Fused-MBConv**。所以V2同时使用了两种结构，**即浅层采用Fused-MBConv而深层采用MBConv**。仔细想一想，这是不是在炼丹呢？确实是在炼丹。
 ![[EfficientNet_v2_Fused_MBConv.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v2_Fused_MBConv.png)
 * 设计了渐进式学习策略**Progressive Learning**。其基本原则在于：(1)训练**早期使用较小的训练尺寸**以及**较弱的正则方法**做Weak Regulation，**这样网络可以快速学到一些简单的表达**；(2)之后**逐渐提升图像的尺寸**，同时**增强图像的正则化方法**，做Strong Regulation
 
 **模型复现**：
@@ -361,20 +387,26 @@ DOI：arXiv:1409.0473
 * Attention机制，其实正如它的名字一样-**注意力机制**，**注意力表示在观察一个事物时对其不同部分的侧重**。例如拍摄的一张照片里有各种动物，有的人特别注意里面的猫咪，有的人特别注意其中的狗子，还有的人则只在意里边的小青蛙。这种对于首要感兴趣内容的特别在意，或者说对同批数据中不同数据单元具有不同的侧重，就是一种注意力。
 * 在NLP机器翻译领域中，通常要对一个序列化的数据进行处理，一个Sequence通常包含多个连续且具有强相关性的数据单元。对Sequence的处理通常会使用RNN(Recurrent NN，循环神经网络)，也会使用CNN来对输入做相关性处理来达到理解上下文的作用，但是**很难处理并行的情况**，此时若要输出$b_4$就必须先后学习$a_1, a_2, a_3, a_4$ 。这样的问题极大限制了需要考虑上下文联系性的机器翻译技术的发展，不过RNN中输出的每一个向量都能学习到原来每一个输入的信息，这一点**启发了之后Self-Attention技术的发展**。同样，相邻的词语其影响作用是不一样的，如下图CNN和RNN的表示中，**同批次数据之间的关联都是等价的**，这实际上是不对的，所以**要计算不同个体之间的关联性的差异**，才能更准确地确定当前数据个体在语义空间的表示。
 ![[Attention_CNN_RNN.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_CNN_RNN.png)
 * 实际上，在机器翻译领域还有很多嵌入式的表达方式(Embedding)。将**单词库表示成一组正则化的向量库，一段文字就对应了一个向量组，将相邻相关的文字对应的向量做一个相关性嵌入聚合**，这样这段文字对应的向量组就能够在一定程度上包含上下文的信息，能够**利用语境更好地理解多意词语的语境涵义**(例如上图中的两个粉丝，前者代表英译的fans即对某事某人某物的爱好者，后者则表示用淀粉等做成的丝状食品)。
 
 **Attention机制**详解：
 * **命名方式**：**借鉴了人类的选择性视觉注意力机制**，人类视觉会快速扫描全局，获得需要关注的目标区域，随后对关注区域投入更多的注意力资源，获取足够多的目标细节，同时**抑制其它区域的无用信息**
 * **Encoder-Decoder框架**：是机器翻译的基础框架，最早在2014年提出-[Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)。输入的句子Source经过编码器Encoder转化为句子的语义编码C，之后由解码器转化为目标输出Target。但是，很容易就看出来**在公式$y_i=G(C,y_1,...,y_{i-1})$中$y_{i-1}$是地位相同的**，也就是说要生成$y_i$输出时，$y_1$—$y_{i-1}$是等价的。这一点显然是不符合实际情况的，于是将语义编码改成了**动态语义编码**$C_i=\sum_{j}a_{ij}f(x_i)$，其中$a_ij$是对于当前的$y_i$的概率分布，由之前的输出和输入产生而来。Encoder-Decoder也被叫做Seq2Seq模型，中文称为序列到序列的学习，论文于2014年- [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)。
 ![[Attention_Encoder_Decoder.png|400]]
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_Encoder_Decoder.png)
 ![[Attention_index.png|500]]
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_index.png)
 * **计算注意力分布系数**$a_{ij}$：以RNN的模型为例，将输入$x_i$与之前的输出状态一起用于计算注意力分布系数
 ![[Attention_RNN_index.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_RNN_index.png)
 * **Attention机制的本质思想**：若将输入**Source**中的元素看成是由一系列的(**Key, Value**)数据对构成，对于**某个元素Query**欲计算其输出**Target**，则(1)**先计算Query和各个Key的相似/相关性，得到每个Key对于Value的权重系数W**，(2)**然后对Value进行加权求和，得到最终的Attention数值**。
 ![[Attention_path.png|400]]
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_path.png)
 
 * Attention也可以看作是一种**软寻址**方式，输入Source可以看作存储器内存储的内容(**地址Key,值 Value**)。对一个查询Query，执行(1)查询Key=Query，将每个Key地址都与Query进行相似性比较，取出权重系数(2)将系数与原Value进行加权求和得到最后的Attention数值。以下是Attention机制总览，(1)首先计算$Query$与$Key_i$的相似性Similarity，可以采用点积、Cosine相似性或者MLP，(2)归一化，突出重要元素，(3)依据权重系数计算Attention数值
 ![[Attention_path_real.png|400]]
+![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_path_real.png)
 **总结**：
 * 实际上在我个人看来，人工智能**有多少人工才有多少智能**。Attention过程，会给原始数据做初步计算，计算出数据与数据之间的关联性，增加一个结构化的标签，从熵的角度来说，一开始就把信息熵降低了，把杂乱的数据部分有序化了，自然在某些情况下会提高模型的效果。
 * 从本质上理解，**Attention是从大量信息中有筛选出少量重要信息，并聚焦到这些重要信息上**，忽略大多不重要的信息。**权重越大越聚焦于其对应的Value值上**，即权重代表了信息的重要性，而Value是其对应的信息。
@@ -384,20 +416,26 @@ DOI：arXiv:1409.0473
 **DOI**：arXiv:1706.03762
 **简介**：Self-Attention机制正如其名，叫做自注意力机制，也就是在原有数据之上先计算其内在的关联性，构建自我关联的关系模型，再将建模好的数据用来做后面一系列的处理。
 ![[Self_Attention.png|300]]
+![image|300](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention.png)
 **Self-Attention机制详解**：
 * **产生原因**：CNN不能直接用于处理变长的序列样本，但可以实现并行计算；完全基于CNN的Seq2Seq模型虽然可以并行实现，但非常占内存，很难在大数据量的参数进行调整。RNN则难以处理长序列的句子，计算时面临对齐问题，每个时间步的输出需要依赖于前面时间步的输出，这使得模型没有办法并行无法实现并行。**所以才考虑先计算全局的关联权重，用来避免输入距离的限制，降低模型的并行计算成本**。
 * **Attention系数**：欲要计算输入向量之间的关联，可以采用加权点乘(可以再加一个非线性激活)的方法进行计算。这里引入几个加权矩阵$Q-Query$搜索系数，表示 与其它输入的连接，$K-Key$关联值，表示被其它输入的连接，$V-Value$用于提取信息。$Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_K}})V$，其中的$\sqrt{d_k}$用于对数值趋势进行强化，使得SoftMax操作更为明显。
 ![[Self_Attention_Caculation.png]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_Caculation.png)
 * 多头注意力机制**Multi-Head Attention**-同时计算多组关联权重，多组可以表示不同的关系侧重
 $W_q=[{W_{q_1},...,W_{q_m}}],W_k=[{W_{k_1},...,W_{k_m}}],W_v=[{W_{v_1},...,W_{v_m}}]$![[Self_Attention_MultiHead.png|400]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_MultiHead.png)
 * 总结Self-attention和多头注意力的**计算范式**：
 $Multi-Head(Q,K,V)=Concat(head_1,...,head_h)W^o=ZW^o$
 $head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$
 ![[Self_Attention_Path.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_Path.png)
 * **前馈神经网络**：实际上就是两层全连接层的层叠，$FFN(x)=max(0,xW_1+b_1)W2+b_2$，第一层带一个ReLU
 * **Transformer模型**：**实际上是一个Encoder-Decoder结构(论文中是6个Encoder和6个Decoder组成)**，不过将传统的RNN换成了Self-Attention。其中编码器**Encoder由Self-Attention层和Position-wise Feed Forward Network(前馈网络，缩写为 FFN)组成**，**Decoder则由Self-Attention层、Encoder-Decoder Attention和FFN组成**。这个架构中，使用了残差连接和**Layer Normalization**结构，LN的论文(2016)如下：[Layer Normalization](https://arxiv.org/abs/1607.06450)，这一归一化过程是针对NLP领域提出的。
 ![[Transformer.png]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Transformer.png)
 ![[Transformer_path.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Transformer_path.png)
 
 * 位置编码**Position Encoding**：NLP算法中需要对输入序列做顺序编码，Transformer采用了一种独特的位置编码，使其维度与词向量Embedding长度一致。
 $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\frac{pos}{10000^{\frac{2i}{d_model}}})$，其中pos是指当前词在句子中的位置，$i$是指向量中每个值的位置下标。所以**在奇数位使用正弦编码，在偶数位使用余弦编码**。
@@ -419,12 +457,14 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\fr
 * 采用无监督训练，其效果竟然超i过有监督的模型
 * 借鉴Transformer的Embedding，同时采用了Token Embedding(词向量)，Segment Embedding(语句标签)，Position Embedding(位置编码)
 ![[BERT.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/BERT.png)
 
 ### 1.10.4 Vision Transformer-2020-Google
 **论文**：[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)
 **DOI**：arXiv:2010.11929
 **简介**：ViT并不是率先将Transformer应用于CV的模型，但是其模型简单、效果好且可扩展性强，**成为transformer在CV领域应用的里程碑**，掀起CV领域里的Transformer的浪潮。**ViT论文的核心在于：当拥有足够多的数据进行预训练的时候，ViT的表现会超过CNN**；通常在数据集不够大的时候，ViT的表现通常比同等大小的ResNet要差一些，因为Transformer缺少**归纳偏置**。
 ![[VisionTransformer.png]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/VisionTransformer.png)
 **扩展概念**：
 * **归纳偏置(Inductive Bias)**：(1)通俗一点，归纳偏置可以理解为，从现实生活中观察到的现象中归纳出一定的规则，然后对模型做一定的约束，从而可以起到 “模型选择” 的作用，类似贝叶斯学习中的 “先验”。(2)广义上，归纳偏置让学习算法优先考虑具有某些属性的解。从以上定义来看，**归纳偏置的意义或作用是使得学习器具有了泛化的能力**。
 个人理解，如果拿一些数据给模型去进行学习，模型确实能够学习到数据中的特点，**但是这个过程可能会非常的长而且不一定能够达到预期的效果**。所以，我们可以在自然经验的基础之上，为整个模型加上某些**引导**，**使得模型能够更快更好地达到合适想象的效果**。
@@ -450,12 +490,15 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\fr
 **DOI**：arXiv:1409.1556
 **简介**：又是微软接过了谷歌的视觉工作，**Swin-Transformer(Shifted Windows Transformer)结合CNN中的滑动窗口机制**计算**局部注意力**，**解决了ViT中全局注意力导致的计算量过大的问题**，其在诸多下游任务上的卓越表现使其成为2021年ICCV的最佳论文，此项工作进一步证明了Transformer在视觉领域是可以得到广泛应用的。
 ![[SwinTransformer.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer.png)
 **主要贡献**：
 * 结合CNN提出包含**滑动窗口**机制的**分级局部注意力计算机制**，构建类似CNN的**层次化构建方法**(Hierarchical feature maps)，进行图样的下4倍、8倍和16倍采样，构建有助于检测、分割任务的BackBone，不同于ViT只有16倍
 * 构建Windows Multi-Head Self-Attention(**窗口多头注意力机制**, W-MSA)，将特征图划分为多个不相交的Window，只在每个Window内做Self-Attention，不同于ViT对全局进行多头注意力计算。采用**窗口多头注意力机制可以有效减少计算量，但是缺隔绝了不同窗口之间的信息传递**，由此作者又在增加了滑动窗口的思想，即Shifted Windows Multi-Head Self-Attention(**滑动窗口多头注意力机制**, SW-MSA)，让相邻窗口之间能够进行信息传递
 ![[SwinTransformer_Feature_Maps.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_Feature_Maps.png)
 * 构建非常巧巧妙的**循环移位掩码机制**
 ![[SwinTransformer_CyclicShift.png|500]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_CyclicShift.png)
 **模块详解**：
 * **窗口多头注意力机制**, W-MSA：将全局注意力**降解为局部注意力计算**
 $Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$，其中$B$为Relative Position Bias**相对位置索引**
@@ -469,9 +512,11 @@ $Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$，其中$B$为Relative Posi
 **得到MSA与W-MSA的复杂度差距为**：$2(hw)^2C-2hwM^2C$
 * **滑动窗口多头注意力机制**, SW-MSA：以滑动窗口打通局部注意力之间的关联计算，**重构全局注意力**
 ![[SwinTransformer_SW_MSA.png]]
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_SW_MSA.png)
 
 * **模块迁移机制**，Patch Merging：
 ![[SwinTransformer_PatchMerging.png]]
+![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_PatchMerging.png)
 
 **模型复现**：
 * 平台：Pytorch
