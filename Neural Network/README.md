@@ -218,10 +218,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v1_dw_pw.png)
 * 在DW卷积的定义下，提出PointwiseConv(PW卷积)，也就是卷积核大小为1x1的卷积，一般DW和PW是配合使用的
 * DW卷积的理论计算量是传统卷积的1/9，符号定义： $M$ 为图像channel数量， $D_F$ 为图像的原始尺寸， $N$ 为使用的卷积核个数， $D_K$ 为卷积核的大小。从参数角度上来看，这些参数都可以被分解为点态的参数。在 $D_K=3$ 时，这个比值极限为 $\frac{1}{9}$。
-$$S_1=M*D_F^2*N*D_K^2$$
-
-$$S_2=M*D_F^2*D_K^2+M*N*D_F^2$$
-
+$S_1=M*D_F^2*N*D_K^2$   $S_2=M*D_F^2*D_K^2+M*N*D_F^2$ 
 $$
 	\frac{S_1}{S_2}=\frac{M*D_F^2*D_K^2+M*N*D_F^2}{M*D_F^2*N*D_K^2}=\frac{1}{N}+\frac{1}{D_K^2}
 $$
@@ -260,7 +257,7 @@ $$
 * **NAS-网络结构搜索**。之前的VGG、ResNet、GoogLeNet、MobileNet V1 V2都是由手动设计得到的，其中网络Layer层数，卷积核Kernel的大小，步长等参数都需要手动设置，采用NAS方法则是计算机通过优化算法寻优计算得到的，也就是采用了进化算法等优化理论的思想。但是这样的方法需要极大的算力支持，简直暴力美学。
 
 **主要贡献**：
-* Hard-Swish激活函数来取代原有的激活函数，来自于谷歌大脑2017的论文：[Searching for Activation Functions](https://arxiv.org/abs/1710.05941)中的swish函数$f(x)=x \cdot \operatorname{sigmoid}(\beta x)$。由于**sigmoid函数计算复杂**，所以V3改用其近似函数来逼近swish函数，作者认为使用ReLU6作为这个近似函数理由为：(1)在几乎所有的软件和硬件框架上都可以使用ReLU6的优化实现，(2)ReLU6能在特定模式下消除由于近似sigmoid的不同实现而带来的潜在的**数值精度损失**。
+* Hard-Swish激活函数来取代原有的激活函数，来自于谷歌大脑2017的论文：[Searching for Activation Functions](https://arxiv.org/abs/1710.05941)中的swish函数 $f(x)=x \cdot \operatorname{sigmoid}(\beta x)$ 。由于**sigmoid函数计算复杂**，所以V3改用其近似函数来逼近swish函数，作者认为使用ReLU6作为这个近似函数理由为：(1)在几乎所有的软件和硬件框架上都可以使用ReLU6的优化实现，(2)ReLU6能在特定模式下消除由于近似sigmoid的不同实现而带来的潜在的**数值精度损失**。
   
 $$
 Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 \\ x, & \text { if } x \geq 3 \\ \frac{x(x+3)}{6}, & \text { otherwise }\end{cases}
@@ -295,7 +292,7 @@ $$
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_Shuffle.png)
 * 结合ResNeXt和MobileNet的旁支结构设计**ShuffleNet单元**
 
-![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_ShuffleBlock)
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ShuffleNet_v1_ShuffleBlock.png)
 * 以上的卷积模组不禁告诉研究者，**深度分离卷积几乎是构造轻量高效模型的必用结构**
 
 **模型复现**：
@@ -426,7 +423,7 @@ DOI：arXiv:1409.0473
 
 **Self-Attention机制详解**：
 * **产生原因**：CNN不能直接用于处理变长的序列样本，但可以实现并行计算；完全基于CNN的Seq2Seq模型虽然可以并行实现，但非常占内存，很难在大数据量的参数进行调整。RNN则难以处理长序列的句子，计算时面临对齐问题，每个时间步的输出需要依赖于前面时间步的输出，这使得模型没有办法并行无法实现并行。**所以才考虑先计算全局的关联权重，用来避免输入距离的限制，降低模型的并行计算成本**。
-* **Attention系数**：欲要计算输入向量之间的关联，可以采用加权点乘(可以再加一个非线性激活)的方法进行计算。这里引入几个加权矩阵$Q-Query$搜索系数，表示 与其它输入的连接，$K-Key$关联值，表示被其它输入的连接，$V-Value$用于提取信息。$Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_K}})V$，其中的$\sqrt{d_k}$用于对数值趋势进行强化，使得SoftMax操作更为明显。
+* **Attention系数**：欲要计算输入向量之间的关联，可以采用加权点乘(可以再加一个非线性激活)的方法进行计算。这里引入几个加权矩阵 $Q-Query$ 搜索系数，表示 与其它输入的连接， $K-Key$ 关联值，表示被其它输入的连接， $V-Value$ 用于提取信息。  $Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_K}})V$ ，其中的 $\sqrt{d_k}$ 用于对数值趋势进行强化，使得SoftMax操作更为明显。
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_Caculation.png)
 * 多头注意力机制**Multi-Head Attention**-同时计算多组关联权重，多组可以表示不同的关系侧重
@@ -470,9 +467,9 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\f
 ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/BERT.png)
 
 ### 1.10.4 Vision Transformer-2020-Google
-**论文**：[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)
-**DOI**：arXiv:2010.11929
-**简介**：ViT并不是率先将Transformer应用于CV的模型，但是其模型简单、效果好且可扩展性强，**成为transformer在CV领域应用的里程碑**，掀起CV领域里的Transformer的浪潮。**ViT论文的核心在于：当拥有足够多的数据进行预训练的时候，ViT的表现会超过CNN**；通常在数据集不够大的时候，ViT的表现通常比同等大小的ResNet要差一些，因为Transformer缺少**归纳偏置**。
+**论文**：[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929) 
+**DOI**：arXiv:2010.11929 
+**简介**：ViT并不是率先将Transformer应用于CV的模型，但是其模型简单、效果好且可扩展性强，**成为transformer在CV领域应用的里程碑**，掀起CV领域里的Transformer的浪潮。**ViT论文的核心在于：当拥有足够多的数据进行预训练的时候，ViT的表现会超过CNN**；通常在数据集不够大的时候，ViT的表现通常比同等大小的ResNet要差一些，因为Transformer缺少**归纳偏置**。 
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/VisionTransformer.png)
 **扩展概念**：
