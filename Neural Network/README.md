@@ -12,9 +12,9 @@
 * 定义：图像分类是计算机视觉的一项基本任务，也是自然界最直观的可解释的基本视觉。分类任务试图从整体上理解图像，将特定标签域中的标签分配给图像。通常，分类任务指的是单标签任务。
  
 ## 1.1 LeNet-1998-Yann LeCun
-**论文**：[LeNet：Gradient-based learning applied to document recognition](https://ieeexplore.ieee.org/document/726791)
-**DOI**：10.1109/5.726791.
-**简介**：CV开山作之一，Yann LeCun最早采用了基于卷积+梯度优化的神经网络用于支票手写数字的识别
+**论文**：[LeNet：Gradient-based learning applied to document recognition](https://ieeexplore.ieee.org/document/726791) 
+**DOI**：10.1109/5.726791. 
+**简介**：CV开山作之一，Yann LeCun最早采用了基于卷积+梯度优化的神经网络用于支票手写数字的识别 
 
 **主要贡献**：
 * 构建了：**卷积-下采样(池化)-全连接**的卷积网络范式
@@ -30,10 +30,10 @@
 * 复现代码[GitHub]：[DeepLearning/model_classification/LeNet](https://github.com/YangCazz/DeepLearning/tree/master/model_classification/LeNet)
 
 ## 1.2 AlexNet-2012-Hinton和他的学生Alex
-**论文**：[AlexNet: ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
-**DOI**：10.1145/3065386.
+**论文**：[AlexNet: ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) 
+**DOI**：10.1145/3065386. 
 **简介**：CV开山作之二，时隔多年后CNN在2012 ILSVRC ([ImageNet](https://image-net.org)大规模视觉识别挑战赛)冠军，延续了Yang LeCun的工作，展示了CNN在图像识别领域的优势，是CV领域承先启后的作品。
-
+ 
   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/AlexNet.png)
 
 **主要贡献**：
@@ -51,9 +51,9 @@
 * 代码[GitHub]：[DeepLearning/model_classification/Alexnet](https://github.com/YangCazz/DeepLearning/tree/master/model_classification/Alexnet)
 
 ## 1.3 VGG-2014-牛津大学Visial Geometry Group(VGG)
-**论文**：[Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)
-**DOI**：arXiv:1409.1556
-**简介**：2014年的ImageNet中定位任务的第一名，分类任务的第二名。随着硬件技术的进步，研究人员们有能力构建足够深足够大的卷积神经网络来做分类任务。**事实证明，卷积神经网络在深度上的提升，带来分类效果的极大改善**。
+**论文**：[Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556) 
+**DOI**：arXiv:1409.1556 
+**简介**：2014年的ImageNet中定位任务的第一名，分类任务的第二名。随着硬件技术的进步，研究人员们有能力构建足够深足够大的卷积神经网络来做分类任务。**事实证明，卷积神经网络在深度上的提升，带来分类效果的极大改善**。 
 
   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/VGG.png)
 
@@ -72,13 +72,10 @@
 GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第一个超过100层的卷积神经网络。因为提出了Inception结构，所以也被叫做InceptionNet，历经多个版本的更迭。**有一点不好的是，GoogLeNet是比较难复现的**。和VGG在深度Depth上的探索相比，GoogLeNet更像是深度学习网络在广度上的探索。
 
 **论文**：
-[2014]**InceptionNet V1**: [Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842)
-
-[2015]**InceptionNet V2**:[Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](http://proceedings.mlr.press/v37/ioffe15.html)
-
-[2015]**InceptionNet V3**:[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)
-
-[2017]**InceptionNet V4**:[Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/abs/1602.07261)
+[2014]**InceptionNet V1**: [Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842)  
+[2015]**InceptionNet V2**:[Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](http://proceedings.mlr.press/v37/ioffe15.html)    
+[2015]**InceptionNet V3**:[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)   
+[2017]**InceptionNet V4**:[Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/abs/1602.07261) 
 
 
 ### 1.4.1 InceptionNet V1-2014
@@ -88,7 +85,8 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 **主要贡献**：
 * 提出**Inception的卷积组结构**(也叫非对称卷积结构)，在一个卷积模块中同时采用不同大小的卷积，可以同时对图像多个尺度的特征进行学习，并在channel维度进行拼接，融合不同尺度的特征信息；将Inception结构与原有的卷积结构进行结构，构建出一个深层的多尺度特征提取模型
-*   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v1.png)
+  
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v1.png)
 
 * **引入辅助输出层**，在模型训练时的几个Stage分别构建输出层，将这些输出层(2个辅助输出层和一个主输出层)一起作用于模型的损失计算和优化
 
@@ -162,8 +160,8 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 ## 1.5 ResNet-2015-MicroSoft Asian
 
 
-**论文**：[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
-**DOI**：arXiv:1512.03385
+**论文**：[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)  
+**DOI**：arXiv:1512.03385  
 
 **简介**：2015年的ImageNet中的目标检测任务第一名，分类任务第一名；2015年CoCo数据集目标检测任务的第一名，图像分割任务的第一名。自2012年AlexNet的诞生，到VGG和GoogLeNet对深度学习网络Deepth的探索，逐渐形成一个观念“**网络越深效果越好**”。通过实验，ResNet随着网络层不断的加深，模型的准确率先是不断的提高，达到最大值（准确率饱和），然后随着网络深度的继续增加，模型准确率毫无征兆的出现大幅度的降低。这说明，网络并不是越深越好，过深的网络会导致准确率的“**退化”(Degradation)**。2015年，何凯明团队提出的**残差结构，就是应对模型的退化而来的**，这一优秀的想法造就了ResNet，这一优秀的网络直到现在还能够得到各领域的广泛应用，可见其强大和有效性。
 
@@ -184,7 +182,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 * 代码[GitHub]：[DeepLearning/model_classification/ResNet_ResNeXt](https://github.com/YangCazz/DeepLearning/tree/master/model_classification/ResNet_ResNeXt)
 
 ## 1.6 ResNeXt-2016-MicroSoft Asian
-**论文**：[Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)
+**论文**：[Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)  
 **DOI**：arXiv:1611.05431
 
 **简介**：是ResNet的升级，融入了GoogLeNet的Inception结构，改造原有的残差模块。同样是由谷歌何凯明一行人在原有研究基础之上的探索，借助Split-Transform-Merge思想发展出了新的残差结构。
@@ -205,9 +203,9 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 ## 1.7 MobileNet-Google
 **论文**：
-[2017]**MobileNet V1**:[ MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
-[2018]**MobileNet V2**:[MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)
-[2019]**MobileNet V3**:[Searching for MobileNetV3](https://arxiv.org/abs/1905.02244)
+[2017]**MobileNet V1**:[ MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)  
+[2018]**MobileNet V2**:[MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)  
+[2019]**MobileNet V3**:[Searching for MobileNetV3](https://arxiv.org/abs/1905.02244)  
 
 ### 1.7.1  MobileNet V1-2017
 **简介**：经历了GoogLeNet多年多个版本递进式的研究，**深度学习各模型之间的竞争大多集中在大规模计算**，**集中在对硬件和算力的竞争上**，2017年谷歌团队转而**将目光转到深度学习在小规模计算集群的部署上来**。也就是说，让一些算力较低的设备-如手机和小型电脑等也能够完成深度学习的任务。**MobileNet，正如其名意为可以在移动设备上部署的深度学习网络**，Google团队将原始的卷积替换成了深度可分离卷积(Deepwise separable Conv，DW卷积)，V1的基本构成就是在VGG的架构上将卷积改造成DW卷积，其理论卷积计算量是VGG的1/8左右。巧合的是，同一时期谷歌的另一个团队也提出了基于相同架构的Xception网络。
@@ -276,8 +274,8 @@ $$
 
 ## 1.8 ShuffleNet-旷视科技
 **论文**：
-[2018]ShuffleNet V1:[ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices](https://arxiv.org/abs/1707.01083v1)
-[2018]ShuffleNet V2:[ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design](https://arxiv.org/abs/1807.11164)
+[2018]ShuffleNet V1:[ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices](https://arxiv.org/abs/1707.01083v1)  
+[2018]ShuffleNet V2:[ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design](https://arxiv.org/abs/1807.11164)  
 
 ### 1.8.1 ShuffleNet V1-2017
 **简介**：ShuffleNet是AI四小龙之一旷视科技的代表之作，算是一个里程碑式的成果，第一作者张祥雨也是ResNet的作者之一。ShuffleNet和谷歌的MobileNet一样，都是轻量级模型的代表作，也正如其名Shuffle模型融入了随机洗牌的机制，其目的在于**解决组卷积中的组内关联性低的问题**。同时，作者还讨论了模型的评价指标，常用的FLOPs是一种间接的评价指标并不能我们完全在意的内容，需要用更直接的指标来进行评价如每秒训练速度(Batches/sec)和每秒推理速度(Images/sec)。
@@ -329,8 +327,8 @@ $$
 
 ## 1.9 EfficientNet-Google
 **论文**：
-[2019]**EfficientNet V1**:[EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
-[2021]**EfficientNet V2**:[EfficientNetV2: Smaller Models and Faster Training](https://arxiv.org/abs/2104.00298)
+[2019]**EfficientNet V1**:[EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)  
+[2021]**EfficientNet V2**:[EfficientNetV2: Smaller Models and Faster Training](https://arxiv.org/abs/2104.00298)  
 
 ### 1.9.1 EfficientNet V1-2019
 **简介**：在之前的一些手工设计网络中(AlexNet，VGG，ResNet等等)经常有人问，为什么输入图像分辨率要固定为224，为什么卷积的个数要设置为这个值，为什么网络的深度设为这么深？这些问题你要问设计作者的话，估计回复就四个字——工程经验。而这篇论文主要是用NAS（Neural Architecture Search）技术来搜索网络的**图像输入分辨率r**，**网络的深度depth**以及通**道的宽度width**三个参数的合理化配置。作者也籍此讨论了各个指标对模型的影响，实际上**参数数量越少并不意味着推理的速度越快**，也有可能是以空间换时间的以增大系统IO的成本来提高模型的准确度。同此可以发现，直接用暴力求优法真的能找到相对较好的模型架构，说白了**写文章就是说故事**。
@@ -380,8 +378,8 @@ $$
 ### 1.10.1 Attention机制-2014-Google DeepMind
 **论文**：
 [2014]**视觉任务**：[Recurrent Models of Visual Attention](https://arxiv.org/abs/1406.6247)
-DOI：arXiv:1406.6247
-[2014]**机器翻译**：[Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473v7)
+DOI：arXiv:1406.6247  
+[2014]**机器翻译**：[Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473v7)  
 DOI：arXiv:1409.0473
 
 **简介**：纵观深度学习发展历史，谷歌的贡献是无与伦比的，几乎全是谷歌的作品。Attention机制最早出现在视觉领域，之后应用在自然语言处理领域，前一篇文章开创了Attention先河，后一篇文章首先将Attention应用在机器翻译领域。在此之后，Attention被广泛应用在基于RNN/CNN的各种视觉和翻译任务中。
@@ -415,9 +413,9 @@ DOI：arXiv:1409.0473
 * 从本质上理解，**Attention是从大量信息中有筛选出少量重要信息，并聚焦到这些重要信息上**，忽略大多不重要的信息。**权重越大越聚焦于其对应的Value值上**，即权重代表了信息的重要性，而Value是其对应的信息。
 
 ### 1.10.2 Self-Attention / Transformer-2017-Google
-**论文**：[Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-**DOI**：arXiv:1706.03762
-**简介**：Self-Attention机制正如其名，叫做自注意力机制，也就是在原有数据之上先计算其内在的关联性，构建自我关联的关系模型，再将建模好的数据用来做后面一系列的处理。
+**论文**：[Attention Is All You Need](https://arxiv.org/abs/1706.03762)  
+**DOI**：arXiv:1706.03762  
+**简介**：Self-Attention机制正如其名，叫做自注意力机制，也就是在原有数据之上先计算其内在的关联性，构建自我关联的关系模型，再将建模好的数据用来做后面一系列的处理。  
 
 ![image|300](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention.png)
 
@@ -454,9 +452,9 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\f
 * 在NLP的翻译任务中需要解决三个任务：(1)原句内部词向量之间的关系(2)目标句内部的关系(3)原句与目标句之间的关系，在NLP的几大模型中**Seq2Seq只关注了(3)**，它对(1)和(2)的关注依旧采用的是RNN，对远距离信息的捕捉能力很差，而且训练慢，顺序执行并行度太低；**Transformer采用Self-attention和多头机制对(1)(2)(3)都进行了学习**，Position Encoding机制增大了模型的并行性
 
 ### 1.10.3 BERT-2018-Google(未复现)
-**论文**：[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
-**DOI**：arXiv:1810.04805 
-**简介**：Transformer在NLP大火之后，在Transformer之上的应用更多了。BERT的本质是一个自编码语言模型(Autoencoder LM)，它由多个Transformer叠合而成的，能够实现在多项NLP任务上的应用。
+**论文**：[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)   
+**DOI**：arXiv:1810.04805   
+**简介**：Transformer在NLP大火之后，在Transformer之上的应用更多了。BERT的本质是一个自编码语言模型(Autoencoder LM)，它由多个Transformer叠合而成的，能够实现在多项NLP任务上的应用。  
 
 **主要贡献**：(暂时不做太多展开)
 * 是NLP领域的集大成者，在各类别NLP任务上都有很好的效果
@@ -467,9 +465,9 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\f
 ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/BERT.png)
 
 ### 1.10.4 Vision Transformer-2020-Google
-**论文**：[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929) 
-**DOI**：arXiv:2010.11929 
-**简介**：ViT并不是率先将Transformer应用于CV的模型，但是其模型简单、效果好且可扩展性强，**成为transformer在CV领域应用的里程碑**，掀起CV领域里的Transformer的浪潮。**ViT论文的核心在于：当拥有足够多的数据进行预训练的时候，ViT的表现会超过CNN**；通常在数据集不够大的时候，ViT的表现通常比同等大小的ResNet要差一些，因为Transformer缺少**归纳偏置**。 
+**论文**：[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)   
+**DOI**：arXiv:2010.11929   
+**简介**：ViT并不是率先将Transformer应用于CV的模型，但是其模型简单、效果好且可扩展性强，**成为transformer在CV领域应用的里程碑**，掀起CV领域里的Transformer的浪潮。**ViT论文的核心在于：当拥有足够多的数据进行预训练的时候，ViT的表现会超过CNN**；通常在数据集不够大的时候，ViT的表现通常比同等大小的ResNet要差一些，因为Transformer缺少**归纳偏置**。   
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/VisionTransformer.png)
 **扩展概念**：
@@ -493,9 +491,9 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\f
 
 
 ### 1.10.5 Swin Tranformer-2021-MircoSoft Asian
-**论文**：[Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)
-**DOI**：arXiv:1409.1556
-**简介**：又是微软接过了谷歌的视觉工作，**Swin-Transformer(Shifted Windows Transformer)结合CNN中的滑动窗口机制**计算**局部注意力**，**解决了ViT中全局注意力导致的计算量过大的问题**，其在诸多下游任务上的卓越表现使其成为2021年ICCV的最佳论文，此项工作进一步证明了Transformer在视觉领域是可以得到广泛应用的。
+**论文**：[Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)  
+**DOI**：arXiv:1409.1556  
+**简介**：又是微软接过了谷歌的视觉工作，**Swin-Transformer(Shifted Windows Transformer)结合CNN中的滑动窗口机制**计算**局部注意力**，**解决了ViT中全局注意力导致的计算量过大的问题**，其在诸多下游任务上的卓越表现使其成为2021年ICCV的最佳论文，此项工作进一步证明了Transformer在视觉领域是可以得到广泛应用的。  
 
 ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer.png)
 **主要贡献**：
@@ -508,13 +506,13 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\f
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_CyclicShift.png)
 **模块详解**：
 * **窗口多头注意力机制**, W-MSA：将全局注意力**降解为局部注意力计算** 
-$Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$ ，其中 $B$ 为Relative Position Bias**相对位置索引** 
+$Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$ ，其中 $B$ 为Relative Position Bias**相对位置索引**  
 **MSA中计算步骤**为:
-	(1)计算$QKV$矩阵， $A^{hw \times C} \cdot [W_{q}^{C \times C}, W_{k}^{C \times C},W_{v}^{C \times C}]=[Q^{{hw} \times C},K^{hw \times C},W_{v}^{C \times C}]$  
-	(2)计算 $QK^T$ ， $Q^{{hw} \times C} \cdot K^{T(C \times hw)}=X^{hw \times hw}$ 
-	(3)计算中间结果乘上V， $\Lambda^{hw \times hw} \cdot V^{{hw} \times C}=B^{{hw} \times C}$ 
-	(4)计算多头的加权， $B^{hw \times C} \cdot W_O^{C \times C}=O^{hw \times C}$ 
-**总计复杂度为**：  $3 hwC^2+(hw)^2 C+(hw)^2 C + hwC^2=4 hw C^2+2(hw)^2C$ 
+	(1)计算$QKV$矩阵， $A^{hw \times C} \cdot [W_{q}^{C \times C}, W_{k}^{C \times C},W_{v}^{C \times C}]=[Q^{{hw} \times C},K^{hw \times C},W_{v}^{C \times C}]$   
+	(2)计算 $QK^T$ ， $Q^{{hw} \times C} \cdot K^{T(C \times hw)}=X^{hw \times hw}$  
+	(3)计算中间结果乘上V， $\Lambda^{hw \times hw} \cdot V^{{hw} \times C}=B^{{hw} \times C}$  
+	(4)计算多头的加权， $B^{hw \times C} \cdot W_O^{C \times C}=O^{hw \times C}$  
+**总计复杂度为**：  $3 hwC^2+(hw)^2 C+(hw)^2 C + hwC^2=4 hw C^2+2(hw)^2C$  
 **对应与W-MSA**，其窗口大小为$M*M$将原图划分成 $\frac{h}{M}\cdot\frac{w}{M}$ 个窗口，相当于MSA中的 $h=M,w=M$ ，带回原式，得到
  $$
  \frac{h}{M}\cdot\frac{w}{M}\cdot [3 {M \cdot M} \cdot {C}^2+2(M \cdot M)^2 \cdot C]=4hwC^2+2hwM^2C
