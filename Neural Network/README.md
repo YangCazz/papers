@@ -145,9 +145,9 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 * 在InceptionV3的基础之上改进，提出InceptionV4模块；借鉴ResNet提出Inception-ResNet，这两者在ImageNet上的表现很相似。
 * 进一步对网络结构做划分，分解为Stem层(即数据预前处理层，图1)、Stage层(即模型层)、Reduction层(即特征放缩放缩层，图2)和后处理层(包括Pooling池化、DropOut随机失活和SoftMax聚合)
 
-  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/GoogLeNet_Inception_v4.png)
+  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v4.png)
 
-  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/GoogLeNet_Inception_v4_Reduction.png)
+  ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v4_Reduction.png)
 
 * V3的Inception结构中的Pooling模块也被改成了AvgPooling结构，3x3的卷积结构也被拆解为1xN和Nx1的卷积的组合，以下是InceptionNet V4的总览
 
@@ -161,7 +161,6 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 ## 1.5 ResNet-2015-MicroSoft Asian
 
-^cebaf1
 
 **论文**：[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 **DOI**：arXiv:1512.03385
@@ -194,7 +193,7 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 * 将Inception结构概念进行抽取，形成Group Conv的概念-**Split-Transform-Merge**实际上这样的思想符合神经网络的基础定义   $\mathcal{F}=\sum_{i=1}^C \mathcal{T}_i(\mathbf{x})$
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNeXt.png)
-在ResNeXt中加上残差部分，就构成了  $\mathcal{Y}=X + \sum_{i=1}^C \mathcal{T}_i(\mathbf{x})$![[
+在ResNeXt中加上残差部分，就构成了  $\mathcal{Y}=X + \sum_{i=1}^C \mathcal{T}_i(\mathbf{x})$
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/ResNeXt_Residual.png)
 * GoogLeNet中吸取了ResNet的残差结构写出了InceptionNet V4，而ResNet吸收Inception写成了ResNeXt，两则在思路上很是相似，只不过ResNeXt中的分支拓扑结构是一样的，而InceptionNet V4是手工设计的。
 
@@ -218,8 +217,11 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v1_dw_pw.png)
 * 在DW卷积的定义下，提出PointwiseConv(PW卷积)，也就是卷积核大小为1x1的卷积，一般DW和PW是配合使用的
-* DW卷积的理论计算量是传统卷积的1/9，符号定义：$M$为图像channel数量，$D_F$为图像的原始尺寸，$N$为使用的卷积核个数，$D_K$为卷积核的大小。从参数角度上来看，这些参数都可以被分解为点态的参数。在$D_K=3$时，这个比值极限为$\frac{1}{9}$。
-$S_1=M*D_F^2*N*D_K^2$                             $S_2=M*D_F^2*D_K^2+M*N*D_F^2$
+* DW卷积的理论计算量是传统卷积的1/9，符号定义： $M$ 为图像channel数量， $D_F$ 为图像的原始尺寸， $N$ 为使用的卷积核个数， $D_K$ 为卷积核的大小。从参数角度上来看，这些参数都可以被分解为点态的参数。在 $D_K=3$ 时，这个比值极限为 $\frac{1}{9}$。
+$$S_1=M*D_F^2*N*D_K^2$$
+
+$$S_2=M*D_F^2*D_K^2+M*N*D_F^2$$
+
 $$
 	\frac{S_1}{S_2}=\frac{M*D_F^2*D_K^2+M*N*D_F^2}{M*D_F^2*N*D_K^2}=\frac{1}{N}+\frac{1}{D_K^2}
 $$
@@ -238,7 +240,7 @@ $$
 **简介**：在V1的基础之上，探讨如何优化整个模型，从数据流的角度**讨论了模型不同层对数据的处理和损失效应**，提出Mainfold of Interest(兴趣流)的概念，并讨论了ReLU对特征的损失效果，提出ReLU6函数；单独讨论了残差结构，借鉴ResNet和DenseNet并结合DW卷积的特点提出了Inverted Residual倒残差结构。
 
 **主要贡献**： 
-* 讨论了数据流的损失效应。在使用DW卷积的情况下，被卷积压缩后的Feature Maps经过压缩，经过非线性的ReLU的激活会损失掉特征空间中的负值特征，这使得数据中的感兴趣信息损失太多。引入**ReLU6非线性激活函数**，在一定程度上保留负值空间的特征。$y = ReLU6(x)=min(max(x,0),6)$ 相比于ReLU，在$y=6$时做了一个数据截断。ReLU激活函数对于低维的信息可能会造成比较大的瞬损失，而对于高维的特征信息造成的损失很小，导致数据两头偏差较大。
+* 讨论了数据流的损失效应。在使用DW卷积的情况下，被卷积压缩后的Feature Maps经过压缩，经过非线性的ReLU的激活会损失掉特征空间中的负值特征，这使得数据中的感兴趣信息损失太多。引入**ReLU6非线性激活函数**，在一定程度上保留负值空间的特征。 $y = ReLU6(x)=min(max(x,0),6)$  相比于ReLU，在 $y=6$ 时做了一个数据截断。ReLU激活函数对于低维的信息可能会造成比较大的瞬损失，而对于高维的特征信息造成的损失很小，导致数据两头偏差较大。
   ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v2_ReLU6.png)
 * 讨论了残差结构，将原有的两头大中间小的结构改为两头小中间大的**Inverted Residual逆残差结构**，传统卷积核逆残差从模块上来说是一样的(Conv1x1+**DWConv**3x3+Conv1x1)，只是在维度方向上是不一样的，传统卷积的路线为(**Input->降维->处理->升维->Output**)，逆残差结构的路线为(**Input->升维->处理->降维->Output**)，具体可见如下示意图。
 
@@ -259,7 +261,11 @@ $$
 
 **主要贡献**：
 * Hard-Swish激活函数来取代原有的激活函数，来自于谷歌大脑2017的论文：[Searching for Activation Functions](https://arxiv.org/abs/1710.05941)中的swish函数$f(x)=x \cdot \operatorname{sigmoid}(\beta x)$。由于**sigmoid函数计算复杂**，所以V3改用其近似函数来逼近swish函数，作者认为使用ReLU6作为这个近似函数理由为：(1)在几乎所有的软件和硬件框架上都可以使用ReLU6的优化实现，(2)ReLU6能在特定模式下消除由于近似sigmoid的不同实现而带来的潜在的**数值精度损失**。
-$$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 \\ x, & \text { if } x \geq 3 \\ \frac{x(x+3)}{6}, & \text { otherwise }\end{cases}$$
+  
+$$
+Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 \\ x, & \text { if } x \geq 3 \\ \frac{x(x+3)}{6}, & \text { otherwise }\end{cases}
+$$
+
 * 提出通道注意力机制(Squeeze-and-excitation，SE模块)在网络计算中的利用
 
 ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/MobileNet_v3_SE.png)
@@ -354,7 +360,7 @@ $$Hard—Swish(x)=x\frac{ReLU6(x+3)}{6}=\begin{cases}0, & \text { if } x \leq-3 
 ### 1.9.1 EfficientNet V2-2021
 **简介**：时隔两年，作者团队在V1产生的诸多问题上得出总结，并提出解决办法。同样，在原有的评价指标上又考虑了模型的训练速度。
 
-![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v2)
+![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/EfficientNet_v2.png)
 
 **EfficientNet V1的问题**：
 * 在训练的图像尺寸很大时，模型的训练速度很慢
@@ -385,26 +391,26 @@ DOI：arXiv:1409.0473
 
 **扩展概念**：Attention机制的形成
 * Attention机制，其实正如它的名字一样-**注意力机制**，**注意力表示在观察一个事物时对其不同部分的侧重**。例如拍摄的一张照片里有各种动物，有的人特别注意里面的猫咪，有的人特别注意其中的狗子，还有的人则只在意里边的小青蛙。这种对于首要感兴趣内容的特别在意，或者说对同批数据中不同数据单元具有不同的侧重，就是一种注意力。
-* 在NLP机器翻译领域中，通常要对一个序列化的数据进行处理，一个Sequence通常包含多个连续且具有强相关性的数据单元。对Sequence的处理通常会使用RNN(Recurrent NN，循环神经网络)，也会使用CNN来对输入做相关性处理来达到理解上下文的作用，但是**很难处理并行的情况**，此时若要输出$b_4$就必须先后学习$a_1, a_2, a_3, a_4$ 。这样的问题极大限制了需要考虑上下文联系性的机器翻译技术的发展，不过RNN中输出的每一个向量都能学习到原来每一个输入的信息，这一点**启发了之后Self-Attention技术的发展**。同样，相邻的词语其影响作用是不一样的，如下图CNN和RNN的表示中，**同批次数据之间的关联都是等价的**，这实际上是不对的，所以**要计算不同个体之间的关联性的差异**，才能更准确地确定当前数据个体在语义空间的表示。
+* 在NLP机器翻译领域中，通常要对一个序列化的数据进行处理，一个Sequence通常包含多个连续且具有强相关性的数据单元。对Sequence的处理通常会使用RNN(Recurrent NN，循环神经网络)，也会使用CNN来对输入做相关性处理来达到理解上下文的作用，但是**很难处理并行的情况**，此时若要输出 $b_4$ 就必须先后学习 $a_1, a_2, a_3, a_4$  。这样的问题极大限制了需要考虑上下文联系性的机器翻译技术的发展，不过RNN中输出的每一个向量都能学习到原来每一个输入的信息，这一点**启发了之后Self-Attention技术的发展**。同样，相邻的词语其影响作用是不一样的，如下图CNN和RNN的表示中，**同批次数据之间的关联都是等价的**，这实际上是不对的，所以**要计算不同个体之间的关联性的差异**，才能更准确地确定当前数据个体在语义空间的表示。
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_CNN_RNN.png)
 * 实际上，在机器翻译领域还有很多嵌入式的表达方式(Embedding)。将**单词库表示成一组正则化的向量库，一段文字就对应了一个向量组，将相邻相关的文字对应的向量做一个相关性嵌入聚合**，这样这段文字对应的向量组就能够在一定程度上包含上下文的信息，能够**利用语境更好地理解多意词语的语境涵义**(例如上图中的两个粉丝，前者代表英译的fans即对某事某人某物的爱好者，后者则表示用淀粉等做成的丝状食品)。
 
 **Attention机制**详解：
 * **命名方式**：**借鉴了人类的选择性视觉注意力机制**，人类视觉会快速扫描全局，获得需要关注的目标区域，随后对关注区域投入更多的注意力资源，获取足够多的目标细节，同时**抑制其它区域的无用信息**
-* **Encoder-Decoder框架**：是机器翻译的基础框架，最早在2014年提出-[Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)。输入的句子Source经过编码器Encoder转化为句子的语义编码C，之后由解码器转化为目标输出Target。但是，很容易就看出来**在公式$y_i=G(C,y_1,...,y_{i-1})$中$y_{i-1}$是地位相同的**，也就是说要生成$y_i$输出时，$y_1$—$y_{i-1}$是等价的。这一点显然是不符合实际情况的，于是将语义编码改成了**动态语义编码**$C_i=\sum_{j}a_{ij}f(x_i)$，其中$a_ij$是对于当前的$y_i$的概率分布，由之前的输出和输入产生而来。Encoder-Decoder也被叫做Seq2Seq模型，中文称为序列到序列的学习，论文于2014年- [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)。
+* **Encoder-Decoder框架**：是机器翻译的基础框架，最早在2014年提出-[Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)。输入的句子Source经过编码器Encoder转化为句子的语义编码C，之后由解码器转化为目标输出Target。但是，很容易就看出来**在公式 $y_i=G(C,y_1,...,y_{i-1})$ 中$y_{i-1}$是地位相同的**，也就是说要生成 $y_i$ 输出时， $y_1$ — $y_{i-1}$ 是等价的。这一点显然是不符合实际情况的，于是将语义编码改成了**动态语义编码** $C_i=\sum_{j}a_{ij}f(x_i)$ ，其中 $a_ij$ 是对于当前的 $y_i$ 的概率分布，由之前的输出和输入产生而来。Encoder-Decoder也被叫做Seq2Seq模型，中文称为序列到序列的学习，论文于2014年- [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)。
 
 ![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_Encoder_Decoder.png)
 
 ![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_index.png)
-* **计算注意力分布系数**$a_{ij}$：以RNN的模型为例，将输入$x_i$与之前的输出状态一起用于计算注意力分布系数
+* **计算注意力分布系数** $a_{ij}$ ：以RNN的模型为例，将输入 $x_i$ 与之前的输出状态一起用于计算注意力分布系数
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_RNN_index.png)
 * **Attention机制的本质思想**：若将输入**Source**中的元素看成是由一系列的(**Key, Value**)数据对构成，对于**某个元素Query**欲计算其输出**Target**，则(1)**先计算Query和各个Key的相似/相关性，得到每个Key对于Value的权重系数W**，(2)**然后对Value进行加权求和，得到最终的Attention数值**。
 
 ![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_path.png)
 
-* Attention也可以看作是一种**软寻址**方式，输入Source可以看作存储器内存储的内容(**地址Key,值 Value**)。对一个查询Query，执行(1)查询Key=Query，将每个Key地址都与Query进行相似性比较，取出权重系数(2)将系数与原Value进行加权求和得到最后的Attention数值。以下是Attention机制总览，(1)首先计算$Query$与$Key_i$的相似性Similarity，可以采用点积、Cosine相似性或者MLP，(2)归一化，突出重要元素，(3)依据权重系数计算Attention数值
+* Attention也可以看作是一种**软寻址**方式，输入Source可以看作存储器内存储的内容(**地址Key,值 Value**)。对一个查询Query，执行(1)查询Key=Query，将每个Key地址都与Query进行相似性比较，取出权重系数(2)将系数与原Value进行加权求和得到最后的Attention数值。以下是Attention机制总览，(1)首先计算 $Query$ 与 $Key_i$ 的相似性Similarity，可以采用点积、Cosine相似性或者MLP，(2)归一化，突出重要元素，(3)依据权重系数计算Attention数值
 
 ![image|400](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Attention_path_real.png)
 **总结**：
@@ -417,6 +423,7 @@ DOI：arXiv:1409.0473
 **简介**：Self-Attention机制正如其名，叫做自注意力机制，也就是在原有数据之上先计算其内在的关联性，构建自我关联的关系模型，再将建模好的数据用来做后面一系列的处理。
 
 ![image|300](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention.png)
+
 **Self-Attention机制详解**：
 * **产生原因**：CNN不能直接用于处理变长的序列样本，但可以实现并行计算；完全基于CNN的Seq2Seq模型虽然可以并行实现，但非常占内存，很难在大数据量的参数进行调整。RNN则难以处理长序列的句子，计算时面临对齐问题，每个时间步的输出需要依赖于前面时间步的输出，这使得模型没有办法并行无法实现并行。**所以才考虑先计算全局的关联权重，用来避免输入距离的限制，降低模型的并行计算成本**。
 * **Attention系数**：欲要计算输入向量之间的关联，可以采用加权点乘(可以再加一个非线性激活)的方法进行计算。这里引入几个加权矩阵$Q-Query$搜索系数，表示 与其它输入的连接，$K-Key$关联值，表示被其它输入的连接，$V-Value$用于提取信息。$Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_K}})V$，其中的$\sqrt{d_k}$用于对数值趋势进行强化，使得SoftMax操作更为明显。
@@ -424,13 +431,16 @@ DOI：arXiv:1409.0473
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_Caculation.png)
 * 多头注意力机制**Multi-Head Attention**-同时计算多组关联权重，多组可以表示不同的关系侧重
 $W_q=[{W_{q_1},...,W_{q_m}}],W_k=[{W_{k_1},...,W_{k_m}}],W_v=[{W_{v_1},...,W_{v_m}}]$
-![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_MultiHead.png)
+
+
+![image|300](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_MultiHead.png)
 * 总结Self-attention和多头注意力的**计算范式**：
+  
 $Multi-Head(Q,K,V)=Concat(head_1,...,head_h)W^o=ZW^o$
 $head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Self_Attention_Path.png)
-* **前馈神经网络**：实际上就是两层全连接层的层叠，$FFN(x)=max(0,xW_1+b_1)W2+b_2$，第一层带一个ReLU
+* **前馈神经网络**：实际上就是两层全连接层的层叠， $FFN(x)=max(0,xW_1+b_1)W2+b_2$ ，第一层带一个ReLU
 * **Transformer模型**：**实际上是一个Encoder-Decoder结构(论文中是6个Encoder和6个Decoder组成)**，不过将传统的RNN换成了Self-Attention。其中编码器**Encoder由Self-Attention层和Position-wise Feed Forward Network(前馈网络，缩写为 FFN)组成**，**Decoder则由Self-Attention层、Encoder-Decoder Attention和FFN组成**。这个架构中，使用了残差连接和**Layer Normalization**结构，LN的论文(2016)如下：[Layer Normalization](https://arxiv.org/abs/1607.06450)，这一归一化过程是针对NLP领域提出的。
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Transformer.png)
@@ -438,7 +448,7 @@ $head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/Transformer_path.png)
 
 * 位置编码**Position Encoding**：NLP算法中需要对输入序列做顺序编码，Transformer采用了一种独特的位置编码，使其维度与词向量Embedding长度一致。
-$PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\frac{pos}{10000^{\frac{2i}{d_model}}})$，其中pos是指当前词在句子中的位置，$i$是指向量中每个值的位置下标。所以**在奇数位使用正弦编码，在偶数位使用余弦编码**。
+$PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$， $PE(pos,2i+1)=cos(\frac{pos}{10000^{\frac{2i}{d_model}}})$ ，其中pos是指当前词在句子中的位置，$i$是指向量中每个值的位置下标。所以**在奇数位使用正弦编码，在偶数位使用余弦编码**。
 
 **总结**：
 * Self-Attention与CNN的区别在于CNN限制了感受野大小，CNN只计算了感受野(Receptive field)范围内的相似度，而**Self-Attention考虑了整个图像的相似度**。确切来说Self-Attention是CNN的扩展版本，其感受野由特征矩阵QKV设置(或者自动学习)
@@ -447,8 +457,8 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\fr
 * 在NLP的翻译任务中需要解决三个任务：(1)原句内部词向量之间的关系(2)目标句内部的关系(3)原句与目标句之间的关系，在NLP的几大模型中**Seq2Seq只关注了(3)**，它对(1)和(2)的关注依旧采用的是RNN，对远距离信息的捕捉能力很差，而且训练慢，顺序执行并行度太低；**Transformer采用Self-attention和多头机制对(1)(2)(3)都进行了学习**，Position Encoding机制增大了模型的并行性
 
 ### 1.10.3 BERT-2018-Google(未复现)
-**论文**：[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
-**DOI**：arXiv:1810.04805
+**论文**：[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
+**DOI**：arXiv:1810.04805 
 **简介**：Transformer在NLP大火之后，在Transformer之上的应用更多了。BERT的本质是一个自编码语言模型(Autoencoder LM)，它由多个Transformer叠合而成的，能够实现在多项NLP任务上的应用。
 
 **主要贡献**：(暂时不做太多展开)
@@ -500,16 +510,19 @@ $PE(pos,2i)=sin(\frac{pos}{10000^{\frac{2i}{d_model}}})$，$PE(pos,2i+1)=cos(\fr
 
 ![image|500](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_CyclicShift.png)
 **模块详解**：
-* **窗口多头注意力机制**, W-MSA：将全局注意力**降解为局部注意力计算**
-$Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$，其中$B$为Relative Position Bias**相对位置索引**
+* **窗口多头注意力机制**, W-MSA：将全局注意力**降解为局部注意力计算** 
+$Attention(Q,K,V)=SoftMax(\frac{QK^T}{\sqrt{d}}V+B)$ ，其中 $B$ 为Relative Position Bias**相对位置索引** 
 **MSA中计算步骤**为:
-	(1)计算$QKV$矩阵，$A^{hw \times C} \cdot [W_{q}^{C \times C}, W_{k}^{C \times C},W_{v}^{C \times C}]=[Q^{{hw} \times C},K^{hw \times C},W_{v}^{C \times C}]$
-	(2)计算$QK^T$，$Q^{{hw} \times C} \cdot K^{T(C \times hw)}=X^{hw \times hw}$
-	(3)计算中间结果乘上V，$\Lambda^{hw \times hw} \cdot V^{{hw} \times C}=B^{{hw} \times C}$
-	(4)计算多头的加权，$B^{hw \times C} \cdot W_O^{C \times C}=O^{hw \times C}$
-**总计复杂度为**： $3 hwC^2+(hw)^2 C+(hw)^2 C + hwC^2=4 hw C^2+2(hw)^2C$
-**对应与W-MSA**，其窗口大小为$M*M$将原图划分成$\frac{h}{M}\cdot\frac{w}{M}$个窗口，相当于MSA中的$h=M,w=M$，带回原式，得到$$\frac{h}{M}\cdot\frac{w}{M}\cdot [3 {M \cdot M} \cdot {C}^2+2(M \cdot M)^2 \cdot C]=4hwC^2+2hwM^2C$$
-**得到MSA与W-MSA的复杂度差距为**：$2(hw)^2C-2hwM^2C$
+	(1)计算$QKV$矩阵， $A^{hw \times C} \cdot [W_{q}^{C \times C}, W_{k}^{C \times C},W_{v}^{C \times C}]=[Q^{{hw} \times C},K^{hw \times C},W_{v}^{C \times C}]$  
+	(2)计算 $QK^T$ ， $Q^{{hw} \times C} \cdot K^{T(C \times hw)}=X^{hw \times hw}$ 
+	(3)计算中间结果乘上V， $\Lambda^{hw \times hw} \cdot V^{{hw} \times C}=B^{{hw} \times C}$ 
+	(4)计算多头的加权， $B^{hw \times C} \cdot W_O^{C \times C}=O^{hw \times C}$ 
+**总计复杂度为**：  $3 hwC^2+(hw)^2 C+(hw)^2 C + hwC^2=4 hw C^2+2(hw)^2C$ 
+**对应与W-MSA**，其窗口大小为$M*M$将原图划分成 $\frac{h}{M}\cdot\frac{w}{M}$ 个窗口，相当于MSA中的 $h=M,w=M$ ，带回原式，得到
+ $$
+ \frac{h}{M}\cdot\frac{w}{M}\cdot [3 {M \cdot M} \cdot {C}^2+2(M \cdot M)^2 \cdot C]=4hwC^2+2hwM^2C
+ $$ 
+**得到MSA与W-MSA的复杂度差距为**： $2(hw)^2C-2hwM^2C$ 
 * **滑动窗口多头注意力机制**, SW-MSA：以滑动窗口打通局部注意力之间的关联计算，**重构全局注意力**
 
 ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/SwinTransformer_SW_MSA.png)
