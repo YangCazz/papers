@@ -18,6 +18,7 @@
 
 **主要贡献**：
 * 构建了：**卷积-下采样(池化)-全连接**的卷积网络范式
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/LeNet.png)
 ![[LeNet.png|500]]
 * 推动计算机应用于视觉任务上来
 * 在手写字识别上达到不错的结果
@@ -33,6 +34,7 @@
 **DOI**：10.1145/3065386.
 **简介**：CV开山作之二，时隔多年后CNN在2012 ILSVRC ([ImageNet](https://image-net.org)大规模视觉识别挑战赛)冠军，延续了Yang LeCun的工作，展示了CNN在图像识别领域的优势，是CV领域承先启后的作品。
 ![[AlexNet.png]]
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/AlexNet.png)
 
 **主要贡献**：
 * **首次证明了学习到的特征可以超越手工设计的特征**，让更多的人开始注意这个和黑匣子一样的“深度学习”，**掀起深度学习的研究浪潮**
@@ -53,6 +55,7 @@
 **DOI**：arXiv:1409.1556
 **简介**：2014年的ImageNet中定位任务的第一名，分类任务的第二名。随着硬件技术的进步，研究人员们有能力构建足够深足够大的卷积神经网络来做分类任务。**事实证明，卷积神经网络在深度上的提升，带来分类效果的极大改善**。
 ![[VGG.png]]
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/VGG.png)
 
 **主要贡献**：
 * 第一次深入研究了**网络的深度**对模型效果的影响，分别对11层、13层、16层和19层的模型进行训练，后来人们常用的是**VGG16**和**VGG19**
@@ -70,18 +73,26 @@ GoogLeNet，命名中L为大写是为了致敬Yang LeCun提出的LeNet，是第�
 
 **论文**：
 [2014]**InceptionNet V1**: [Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842)
+
 [2015]**InceptionNet V2**:[Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](http://proceedings.mlr.press/v37/ioffe15.html)
+
 [2015]**InceptionNet V3**:[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)
+
 [2017]**InceptionNet V4**:[Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/abs/1602.07261)
+
 
 ### 1.4.1 InceptionNet V1-2014
 **简介**：在和VGG提出的同年，谷歌团队提出了GoogLeNet一起参加了当年的ImageNet比赛，以其卓越的表现在当年的ImageNet中分类任务中取得第一名![[GoogLeNet_v1.png]]
+  ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GooLeNet_v1.png)
+  
 
 **主要贡献**：
 * 提出**Inception的卷积组结构**(也叫非对称卷积结构)，在一个卷积模块中同时采用不同大小的卷积，可以同时对图像多个尺度的特征进行学习，并在channel维度进行拼接，融合不同尺度的特征信息；将Inception结构与原有的卷积结构进行结构，构建出一个深层的多尺度特征提取模型![[GoogLeNet_Inception_v1.png]]
+*   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_Inception_v1.png)
 
 * **引入辅助输出层**，在模型训练时的几个Stage分别构建输出层，将这些输出层(2个辅助输出层和一个主输出层)一起作用于模型的损失计算和优化
 ![[GoogLeNet_shortcut.png|400]]
+*   ![image](https://github.com/YangCazz/papers/blob/main/Neural%20Network/pics/GoogLeNet_shortcut.png)
 * 使用**1x1卷积**进行数据降维(展平)，其效果等同于全连接层，**从信息学的角度上来说信息损失极小**，却极大地减小了的计算量和计算复杂度
 * 丢弃全连接层，使用平均池化层，极大地减少模型的参数，其参数是VGG的1/20
 
